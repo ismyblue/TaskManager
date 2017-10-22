@@ -1,8 +1,11 @@
 package com.bruce.model;
 
-public class Task extends Item {// 系统程序任务
+//系统程序任务
+public class Task extends Item {
 
+	// 任务备注
 	private String comment;
+	// 任务当前运行号
 	private int current;
 
 	public String getComment() {
@@ -17,12 +20,8 @@ public class Task extends Item {// 系统程序任务
 		return current;
 	}
 
-	public void setCurrent(int current) {
-		this.current = current;
-	}
-
-	public Task(String id, String description, int current, String name,
-			String comment) {
+	public Task(String name, String id, String description, String comment,
+			int current) {
 		super(id, name, description);
 		this.current = current;
 		this.comment = comment;

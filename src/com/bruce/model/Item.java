@@ -2,10 +2,14 @@ package com.bruce.model;
 
 import java.util.Date;
 
-public  class Item {
+public abstract class Item {
+	//创建项目的时间戳
 	private long create;
+	//项目类型
 	private String description;
-	private String id ;//存放项目类型 systemItem or userItem
+	//存放项目类型 systemItem or userItem
+	private String id ;
+	//项目名称
 	private String name;
 	
 	public Item(){
