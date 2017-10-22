@@ -1,20 +1,15 @@
 package com.bruce.start;
 
-import java.util.Scanner;
-
 import com.bruce.model.Task;
 
 public class StartUI {
 
-	// 扫描器，用来获取用户输入内容
-	private Scanner scanner;
 	private String menu;
 	private Tracker myTracker;
 	public input userInput;
 
 	public void init() {
-		userInput = new ConsoleInput();
-		scanner = userInput.getScanner();
+		userInput = new ConsoleInput();// 在input接口上接入一个ConsoleInput的设备
 		myTracker = new Tracker();
 		menu = "请输入要进行的操作:\n" + "１）开启一个任务．" + "２）关闭一个任务．" + "３）修改一个任务．"
 				+ "４）查询任务．" + "５）查看所有任务．" + "６）退出．\n";
@@ -26,22 +21,22 @@ public class StartUI {
 
 		userInput.asking("请输入名称：");
 		do {
-			name = scanner.next();
+			name = userInput.getScanner().next();
 		} while (name.equals(""));
 
 		userInput.asking("请输入任务类型:system/user：");
 		do {
-			id = scanner.next();
+			id = userInput.getScanner().next();
 		} while (id.equals(""));
 
 		userInput.asking("请输入任务描述：");
 		do {
-			desc = scanner.next();
+			desc = userInput.getScanner().next();
 		} while (desc.equals(""));
 
 		userInput.asking("请输入任务备注：");
 		do {
-			comments = scanner.next();
+			comments = userInput.getScanner().next();
 		} while (comments.equals(""));
 
 		Task t = new Task(name, id, desc, comments, Tracker.getPosition());
@@ -57,8 +52,8 @@ public class StartUI {
 		userInput.asking("请输入程序当前运行号：\n");
 		int cur;
 		while (true) {
-			if (scanner.hasNextInt()) {
-				cur = scanner.nextInt();
+			if (userInput.getScanner().hasNextInt()) {
+				cur = userInput.getScanner().nextInt();
 				break;
 			}
 		}
@@ -73,8 +68,8 @@ public class StartUI {
 		userInput.asking("请输入程序当前运行号：\n");
 		int cur;
 		while (true) {
-			if (scanner.hasNextInt()) {
-				cur = scanner.nextInt();
+			if (userInput.getScanner().hasNextInt()) {
+				cur = userInput.getScanner().nextInt();
 				break;
 			}
 		}
@@ -83,22 +78,22 @@ public class StartUI {
 
 		userInput.asking("请输入名称：");
 		do {
-			name = scanner.next();
+			name = userInput.getScanner().next();
 		} while (name.equals(""));
 
 		userInput.asking("请输入任务类型:system/user：");
 		do {
-			id = scanner.next();
+			id = userInput.getScanner().next();
 		} while (id.equals(""));
 
 		userInput.asking("请输入任务描述：");
 		do {
-			desc = scanner.next();
+			desc = userInput.getScanner().next();
 		} while (desc.equals(""));
 
 		userInput.asking("请输入任务备注：");
 		do {
-			comments = scanner.next();
+			comments = userInput.getScanner().next();
 		} while (comments.equals(""));
 
 		Task t = new Task(name, id, desc, comments, cur);
@@ -114,23 +109,23 @@ public class StartUI {
 		String id, name;
 		int cur;
 		userInput.asking(ask);
-		int an = scanner.nextInt();
+		int an = userInput.getScanner().nextInt();
 		switch (an) {
 		case 1:
 			userInput.asking("输入任务id:\n");
-			id = scanner.next();
+			id = userInput.getScanner().next();
 			myTracker.displayItems(myTracker.findById(id));
 			break;
 		case 2:
 			userInput.asking("输入任务当前运行号:\n");
-			cur = scanner.nextInt();
+			cur = userInput.getScanner().nextInt();
 			myTracker.displayItem(myTracker.findByCurrent(cur));
 			break;
 		case 3:
 			userInput.asking("输入id:\n");
-			id = scanner.next();
+			id = userInput.getScanner().next();
 			userInput.asking("输入name:\n");
-			name = scanner.next();
+			name = userInput.getScanner().next();
 			myTracker.displayItems(myTracker.findByFiler(id, name));
 			break;
 		default:
@@ -146,10 +141,10 @@ public class StartUI {
 		boolean isClose = false;
 		while (true) {
 			userInput.asking(menu);
-			while (!scanner.hasNextInt()) {
-				scanner.next();
+			while (!userInput.getScanner().hasNextInt()) {
+				userInput.getScanner().next();
 			}
-			int an = scanner.nextInt();
+			int an = userInput.getScanner().nextInt();
 			switch (an) {
 			case 1: {// 增加
 				addTask();
